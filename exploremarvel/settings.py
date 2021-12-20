@@ -26,7 +26,7 @@ SECRET_KEY = 'd&q@agfo6_^+(y=0)jrn5*)!-2_)lz)03qy+1r^)7-q44g298o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://exploremarvel.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
