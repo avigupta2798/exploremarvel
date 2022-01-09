@@ -1,0 +1,66 @@
+.video-wrapper {
+    margin: auto;
+    max-width: 100%;
+    min-width: 320px;
+    position:relative;
+}
+
+.center{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    width:50%
+}
+.App-logo{
+    width:200px
+}
+input{
+    border:1px solid #e12f2f
+}
+.showlink{
+    padding:.4rem .8rem;
+    background-color:#e12f2f;
+    border-radius:3px;
+    color:#fff;
+    font-weight:700;
+    text-decoration:none!important;
+    margin:10px;
+    border:2px solid transparent;
+    transition:all .2s ease-in-out;
+    text-transform:uppercase
+}
+.showlink:hover{
+    border-left:2px solid #e12f2f;
+}
+
+.showlink:hover{
+    background-color:transparent;color:#fff
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+/* Container holding the image and the text */
+.containerr {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+/* Bottom right text */
+.bottom-right {
+    position:absolute;
+    text-align: center;
+    left: 37%;
+    bottom: 15%;
+  }
+
+.video-wrapper video {
+    height: auto;
+    vertical-align: middle;
+    width: 100%;
+  }
