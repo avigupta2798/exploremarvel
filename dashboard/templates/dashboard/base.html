@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Base</title>
+    <title>MARVEL</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -18,8 +18,11 @@
         <h1>Welcome to Explore Marvel !</h1>
         <ul>
           <a class="showlink" href="{% url 'index' %}">HOME</a>
-          <a class="showlink" href="#">NEWS</a>
-          <a class="showlink" href="#">CONTACT</a>
+          <a class="showlink" href="{% url 'characterslist' %}">CHARACTERS</a>
+          <a class="showlink" href="{% url 'comicslist' %}">COMICS</a>
+          <a class="showlink" href="{% url 'serieslist' %}">SERIES</a>
+          <a class="showlink" href="{% url 'eventslist' %}">EVENTS</a>
+          <a class="showlink" href="{% url 'storieslist' %}">STORIES</a>
         </ul>
       </div>
     </div>
