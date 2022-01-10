@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from api import characters_list, comics_list, series_list, events_list, stories_list
+from dashboard.api import characters_list, comics_list, series_list, events_list, stories_list
 # Create your views here.
 
 def index(request):
