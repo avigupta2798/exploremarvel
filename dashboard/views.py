@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from dashboard.api import characters_list, comics_list, series_list, events_list, stories_list
 # Create your views here.
 
@@ -6,16 +7,47 @@ def index(request):
     return render(request,'dashboard/index.html')
 
 def characterslist(request):
-    return render(request,'dashboard/characterslist.html',{"characters_list":characters_list.list_of_characters()})
+    #import pdb; pdb.set_trace()
+    character_list = list(characters_list.list_of_characters().items())
+    paginator = Paginator(character_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard/characterslist.html',{
+        'page_obj': page_obj
+    })
 
 def comicslist(request):
-    return render(request,'dashboard/comicslist.html',{"comics_list":comics_list.list_of_comics()})
+    comic_list = list(comics_list.list_of_comics().items())
+    paginator = Paginator(comic_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard/comicslist.html',{
+        'page_obj': page_obj
+    })
 
 def serieslist(request):
-    return render(request,'dashboard/serieslist.html',{"series_list":series_list.list_of_series()})
+    serie_list = list(series_list.list_of_series().items())
+    paginator = Paginator(serie_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard/serieslist.html',{
+        'page_obj': page_obj
+    })
 
 def eventslist(request):
-    return render(request,'dashboard/eventslist.html',{"events_list":events_list.list_of_events()})
+    event_list = list(events_list.list_of_events().items())
+    paginator = Paginator(event_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard/eventslist.html',{
+        'page_obj': page_obj
+    })
 
 def storieslist(request):
-    return render(request,'dashboard/storieslist.html',{"stories_list":stories_list.list_of_stories()})
+    story_list = list(stories_list.list_of_stories().items())
+    paginator = Paginator(story_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard/storieslist.html',{
+        'page_obj': page_obj
+    })

@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+/* Create three equal columns that sits next to each other */
+.column {
+  width: 25%;
+  padding: 60px;
+  display: inline-block;
+}
