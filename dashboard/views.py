@@ -7,7 +7,6 @@ def index(request):
     return render(request,'dashboard/index.html')
 
 def characterslist(request):
-    #import pdb; pdb.set_trace()
     character_list = list(characters_list.list_of_characters().items())
     paginator = Paginator(character_list, 20)
     page_number = request.GET.get('page')
