@@ -15,18 +15,18 @@ class Characters(models.Model):
     name = models.CharField(max_length=100)
     char_thumbnail_path = models.CharField(max_length=400)
     char_thumbnail_extension = models.CharField(max_length=5)
-    comic = models.ManyToManyField(Comic, related_name='comics')
+    comic = models.ManyToManyField(Comic)
 
 class Events(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     char_thumbnail_path = models.CharField(max_length=400)
     char_thumbnail_extension = models.CharField(max_length=5)
-    comic = models.ManyToManyField(Comic, related_name='comics')
+    comic = models.ManyToManyField(Comic)
 
 class Series(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     char_thumbnail_path = models.CharField(max_length=400)
     char_thumbnail_extension = models.CharField(max_length=5)
-    comic = models.ManyToManyField(Comic, related_name='comics')
+    comic = models.ManyToManyField(Comic)
