@@ -23,6 +23,7 @@ class Events(models.Model):
     char_thumbnail_path = models.CharField(max_length=400)
     char_thumbnail_extension = models.CharField(max_length=5)
     comic = models.ManyToManyField(Comic)
+    character = models.ManyToManyField(Characters)
 
 class Series(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -30,3 +31,5 @@ class Series(models.Model):
     char_thumbnail_path = models.CharField(max_length=400)
     char_thumbnail_extension = models.CharField(max_length=5)
     comic = models.ManyToManyField(Comic)
+    character = models.ManyToManyField(Characters)
+    event = models.ManyToManyField(Events)
