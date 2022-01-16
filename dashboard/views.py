@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from dashboard.api import characters_list, comics_list, series_list, events_list, stories_list
+from dashboard.models import *
 # Create your views here.
 
 def index(request):
     return render(request,'dashboard/index.html')
 
 def characterslist(request):
-    character_list = list(characters_list.list_of_characters().items())
+    #character_list = list(characters_list.list_of_characters().items())
+    character_list = Characters.objects.all()
     paginator = Paginator(character_list, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

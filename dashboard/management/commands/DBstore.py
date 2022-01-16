@@ -34,7 +34,8 @@ class CharactersImport:
             characters = characters['results']
             print(url)
             for i in characters:
-                characters_data = Characters(id = i['id'], name = i['name'])
+                i['thumbnail']['path'] = i['thumbnail']['path']+'/portrait_xlarge.'+i['thumbnail']['extension']
+                characters_data = Characters(id = i['id'], name = i['name'], char_thumbnail_path = i['thumbnail']['path'])
                 characters_data.save()
   
 class Command(BaseCommand):
