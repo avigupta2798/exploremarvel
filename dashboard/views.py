@@ -18,7 +18,8 @@ def characterslist(request):
     })
 
 def comicslist(request):
-    comic_list = list(comics_list.list_of_comics().items())
+    #comic_list = list(comics_list.list_of_comics().items())
+    comic_list = Comic.objects.all().order_by('title')
     paginator = Paginator(comic_list, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

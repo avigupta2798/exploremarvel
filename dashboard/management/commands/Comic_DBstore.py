@@ -28,6 +28,7 @@ class ComicsImport:
     def import_comics(self):
         comics_url = self.URL
         for url in comics_url:
+            ComicsImport.temp = url.partition('&ts')[0].rsplit('=', 1)[-1]
             r = requests.get(url)
             comics = r.json()
             comics = comics['data']
@@ -43,14 +44,20 @@ class ComicsImport:
                     comic_thumbnail_path = i['thumbnail']['path']
                 )
                 comics_data.save()
-class Command(BaseCommand):
+class Command(BaseCommand, ComicsImport):
 
     def handle(self, *args, **options):
         kwargs={}
         start_range = int(input('Enter Start Range: '))
         end_range = int(input('Enter End Range: '))
-        kwargs['start_range'] = start_range
-        kwargs['end_range'] = end_range
-
-        comics_import = ComicsImport(kwargs)
-        comics_import.import_comics()
+        try:
+            kwargs['start_range'] = start_range
+            kwargs['end_range'] = end_range
+            comics_import = ComicsImport(kwargs)
+            comics_import.import_comics()
+        except Exception as e:
+            print("\nwent to exception\n")
+            kwargs['start_range'] = int(ComicsImport.temp)
+            kwargs['end_range'] = end_range
+            comics_import = ComicsImport(kwargs)
+            comics_import.import_comics()
