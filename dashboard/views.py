@@ -9,7 +9,7 @@ def index(request):
 
 def characterslist(request):
     #character_list = list(characters_list.list_of_characters().items())
-    character_list = Characters.objects.all()
+    character_list = Characters.objects.all().order_by('name')
     paginator = Paginator(character_list, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
