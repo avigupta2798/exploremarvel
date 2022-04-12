@@ -22,8 +22,12 @@ urlpatterns = [
     path('characterslist/', views.characterslist, name='characterslist'),
     path('characters/<int:pk>/', views.characters, name='characters'),
     path('comicslist/', views.comicslist, name='comicslist'),
+    path('comics/<int:pk>/', views.comics, name='comics'),
     path('serieslist/', views.serieslist, name='serieslist'),
+    path('series/<int:pk>/', views.series, name='series'),
     path('eventslist/', views.eventslist, name='eventslist'),
+    path('events/<int:pk>/', views.events, name='events'),
     path('storieslist/', views.storieslist, name='storieslist'),
+    path('stories/<int:pk>/', views.stories, name='stories'),
     path('admin/', admin.site.urls),
 ]
