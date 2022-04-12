@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+{% block body_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+
+<h1 style="text-align: center;">{{ r.title }}</h1>
+<div style="display:inline-block;vertical-align:top;">
+<img src="{{ r.thumbnail }}">
+</div>
+<div style="display:inline-block;  width: 70%; margin-left: 3%;">
+
+<p>
+    <dt class="title">Description: </dt>
+    <p style="    display: inline-block; margin-left: 20px;">
+        {{ r.description }}
+    </p>
+</p>
+<p>
+    <dt class="title">Comics: </dt>
+    <ol>
+        {% for value in r.comics.items %}
+        <li>{{ value.name }}</li>
+        {% endfor %}
+    </ol>
+</p>
+<p>
+    <dt class="title">Series: </dt>
+    <ol>
+        {% for value in r.series.items %}
+        <li>{{ value.name }}</li>
+        {% endfor %}
+    </ol>
+</p>
+<p>
+    <dt class="title">Stories: </dt>
+    <ol>
+        {% for value in r.stories.items %}
+        <li>{{ value.name }}</li>
+        {% endfor %}
+    </ol>
+</p>
+<p>
+    <dt class="title">Characters: </dt>
+    <ol>
+        {% for value in r.characters.items %}
+        <li>{{ value.name }}</li>
+        {% endfor %}
+    </ol>
+</p>
+<p>
+    <dt class="title">Creators: </dt>
+    <ol>
+        {% for value in r.creators.items %}
+        <li>{{ value.name }} ( {{ value.role }} )</li>
+        {% endfor %}
+    </ol>
+</p>
+</div>
+{% endblock %}
