@@ -41,6 +41,21 @@ def characterslist(request):
         'page_obj_temp': page_obj_temp
     })
 
+def characters(request, pk):
+    publickey = '9231808ae7a4012c6aa600c80d1bfc2e'
+    privatekey = '24dc7be05edc50d5053cc66ad431cb574c9049f2'
+    baseUrl = 'https://gateway.marvel.com/v1/public/characters/'+str(pk)
+    ts = str(time.time())
+    stringToHash = ts + privatekey + publickey
+    #import pdb;pdb.set_trace()
+    hash = hashlib.md5(stringToHash.encode()).hexdigest()
+    url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
+    r = requests.get(url).json()['data']['results']
+    r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
+    return render(request,'dashboard/characters.html',{
+        'r' : r[0]
+    })
+
 def comicslist(request):
     publickey = '9231808ae7a4012c6aa600c80d1bfc2e'
     privatekey = '24dc7be05edc50d5053cc66ad431cb574c9049f2'
@@ -134,11 +149,6 @@ def eventslist(request):
     page_obj = paginator.get_page(page_number)
     page_obj.paginator.num_pages = int(74/20) + 1
     page_obj_temp = paginator.get_page(page_number)
-
-    #event_list = list(events_list.list_of_events().items())
-    #paginator = Paginator(event_list, 20)
-    #page_number = request.GET.get('page')
-    #page_obj = paginator.get_page(page_number)
     
     return render(request,'dashboard/eventslist.html',{
         'page_obj': page_obj,

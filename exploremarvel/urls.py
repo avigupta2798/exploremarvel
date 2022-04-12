@@ -20,6 +20,7 @@ from dashboard import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('characterslist/', views.characterslist, name='characterslist'),
+    path('characters/<int:pk>/', views.characters, name='characters'),
     path('comicslist/', views.comicslist, name='comicslist'),
     path('serieslist/', views.serieslist, name='serieslist'),
     path('eventslist/', views.eventslist, name='eventslist'),
