@@ -6,7 +6,7 @@
 {% for value in page_obj.object_list %}
 <div class="column">
 <img src="{{ value.thumbnail }}">
-<h3>{{ value.name }}</h2>
+<h3><a style="color: black;" href="{% url 'characters' pk=value.id %}">{{ value.name }}</a></h3>
 </div>
 {% endfor %}
 </div>
