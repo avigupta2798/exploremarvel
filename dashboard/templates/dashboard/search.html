@@ -1,0 +1,32 @@
+{% extends "dashboard/base.html" %}
+{% block body_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+
+<div class="row">
+{% for value in page_obj.object_list %}
+<div class="column">
+<img src="{{ value.thumbnail }}">
+<h3><a style="color: black;" href="{% url name pk=value.id %}">{{ value.name }}</a></h3>
+</div>
+{% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj_temp.has_previous %}
+            <a href="?search={{ element }}&page=1">&laquo; first</a>
+            <a href="?search={{ element }}&page={{ page_obj_temp.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj_temp.number }} of {{ page_obj_temp.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj_temp.has_next %}
+            <a href="?search={{ element }}&page={{ page_obj_temp.next_page_number }}">next</a>
+            <a href="?search={{ element }}&page={{ page_obj_temp.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    
+    </span>
+</div>
+{% endblock %}

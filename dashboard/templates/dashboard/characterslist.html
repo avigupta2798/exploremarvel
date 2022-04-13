@@ -2,6 +2,14 @@
 {% block body_block %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/list.css' %}">
+<div class="topnav">
+    <div class="search-container">
+      <form method="GET" action="{% url 'search' name='characters' %}">
+        <input type="text" placeholder="SEARCH" name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+  </div>
 <div class="row">
 {% for value in page_obj.object_list %}
 <div class="column">
