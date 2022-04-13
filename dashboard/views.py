@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 import time, hashlib, requests
+import re
 from dashboard.api import characters_list, comics_list, series_list, events_list, stories_list
 from dashboard.models import *
 # Create your views here.
@@ -51,6 +52,17 @@ def characters(request, pk):
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
+    try:
+        for i in range(len(r[0]['comics']['items'])):
+            r[0]['comics']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['comics']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['series']['items'])):
+            r[0]['series']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['series']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['stories']['items'])):
+            r[0]['stories']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['stories']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['events']['items'])):
+            r[0]['events']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['events']['items'][i]['resourceURI'])[-1]
+    except Exception as e:
+        pass
     r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
     return render(request,'dashboard/characters.html',{
         'r' : r[0]
@@ -100,6 +112,7 @@ def comics(request, pk):
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
     r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
+
     return render(request,'dashboard/comics.html',{
         'r' : r[0]
     })
