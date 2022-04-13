@@ -16,7 +16,7 @@
     </p>
 </p>
 <p>
-    <dt class="title">Characters: </dt>
+    <dt class="title"><a style="color: black;" href="{% url 'characterslist' %}">Characters: </a></dt>
     <ol>
         {% for value in r.characters.items %}
         <li>{{ value.name }}</li>
@@ -24,13 +24,13 @@
     </ol>
 </p>
 <p>
-    <dt class="title">Series: </dt>
+    <dt class="title"><a style="color: black;" href="{% url 'serieslist' %}">Series: </a></dt>
     <p style="display: inline-block; margin-left: 20px;">
         {{ r.series.name }}
     </p>
 </p>
 <p>
-    <dt class="title">Stories: </dt>
+    <dt class="title"><a style="color: black;" href="{% url 'storieslist' %}">Stories: </a></dt>
     <ol>
         {% for value in r.stories.items %}
         <li>{{ value.name }}</li>
@@ -38,7 +38,7 @@
     </ol>
 </p>
 <p>
-    <dt class="title">Events: </dt>
+    <dt class="title"><a style="color: black;" href="{% url 'eventslist' %}">Events: </a></dt>
     <ol>
         {% for value in r.events.items %}
         <li>{{ value.name }}</li>
