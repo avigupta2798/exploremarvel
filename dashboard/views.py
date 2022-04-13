@@ -111,6 +111,16 @@ def comics(request, pk):
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
+    try:
+        for i in range(len(r[0]['characters']['items'])):
+            r[0]['characters']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['characters']['items'][i]['resourceURI'])[-1]
+        r[0]['series']['resourceURI'] = re.findall(r'\d+', r[0]['series']['resourceURI'])[-1]
+        for i in range(len(r[0]['stories']['items'])):
+            r[0]['stories']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['stories']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['events']['items'])):
+            r[0]['events']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['events']['items'][i]['resourceURI'])[-1]
+    except Exception as e:
+        pass
     r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
 
     return render(request,'dashboard/comics.html',{
@@ -160,6 +170,17 @@ def series(request, pk):
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
+    try:
+        for i in range(len(r[0]['characters']['items'])):
+            r[0]['characters']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['characters']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['comics']['items'])):
+            r[0]['comics']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['comics']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['stories']['items'])):
+            r[0]['stories']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['stories']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['events']['items'])):
+            r[0]['events']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['events']['items'][i]['resourceURI'])[-1]
+    except Exception as e:
+        pass
     r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
     return render(request,'dashboard/series.html',{
         'r' : r[0]
@@ -208,6 +229,17 @@ def events(request, pk):
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
+    try:
+        for i in range(len(r[0]['characters']['items'])):
+            r[0]['characters']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['characters']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['series']['items'])):
+            r[0]['series']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['series']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['stories']['items'])):
+            r[0]['stories']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['stories']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['comics']['items'])):
+            r[0]['comics']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['comics']['items'][i]['resourceURI'])[-1]
+    except Exception as e:
+        pass
     r[0]['thumbnail'] = r[0]['thumbnail']['path']+'/portrait_uncanny.'+r[0]['thumbnail']['extension']
     return render(request,'dashboard/events.html',{
         'r' : r[0]
@@ -256,6 +288,17 @@ def stories(request, pk):
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     url = baseUrl + "?ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
     r = requests.get(url).json()['data']['results']
+    try:
+        for i in range(len(r[0]['characters']['items'])):
+            r[0]['characters']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['characters']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['series']['items'])):
+            r[0]['series']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['series']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['comics']['items'])):
+            r[0]['comics']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['comics']['items'][i]['resourceURI'])[-1]
+        for i in range(len(r[0]['events']['items'])):
+            r[0]['events']['items'][i]['resourceURI'] = re.findall(r'\d+', r[0]['events']['items'][i]['resourceURI'])[-1]
+    except Exception as e:
+        pass
     r[0]['thumbnail'] = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'+'/portrait_xlarge.'+'jpg'
     return render(request,'dashboard/stories.html',{
         'r' : r[0]

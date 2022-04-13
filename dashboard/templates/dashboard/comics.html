@@ -19,21 +19,21 @@
     <dt class="title"><a style="color: black;" href="{% url 'characterslist' %}">Characters: </a></dt>
     <ol>
         {% for value in r.characters.items %}
-        <li>{{ value.name }}</li>
+        <li><a style="color: black;" href="{% url 'characters' pk=value.resourceURI %}">{{ value.name }}</a></li>
         {% endfor %}
     </ol>
 </p>
 <p>
     <dt class="title"><a style="color: black;" href="{% url 'serieslist' %}">Series: </a></dt>
     <p style="display: inline-block; margin-left: 20px;">
-        {{ r.series.name }}
+        <a style="color: black;" href="{% url 'series' pk=r.series.resourceURI %}">{{ r.series.name }}</a>
     </p>
 </p>
 <p>
     <dt class="title"><a style="color: black;" href="{% url 'storieslist' %}">Stories: </a></dt>
     <ol>
         {% for value in r.stories.items %}
-        <li>{{ value.name }}</li>
+        <li><a style="color: black;" href="{% url 'stories' pk=value.resourceURI %}">{{ value.name }}</a></li>
         {% endfor %}
     </ol>
 </p>
@@ -41,7 +41,7 @@
     <dt class="title"><a style="color: black;" href="{% url 'eventslist' %}">Events: </a></dt>
     <ol>
         {% for value in r.events.items %}
-        <li>{{ value.name }}</li>
+        <li><a style="color: black;" href="{% url 'events' pk=value.resourceURI %}">{{ value.name }}</a></li>
         {% endfor %}
     </ol>
 </p>
