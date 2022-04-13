@@ -19,6 +19,7 @@ from dashboard import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('search/<str:name>', views.search, name='search'),
     path('characterslist/', views.characterslist, name='characterslist'),
     path('characters/<int:pk>/', views.characters, name='characters'),
     path('comicslist/', views.comicslist, name='comicslist'),
