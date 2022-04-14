@@ -18,6 +18,7 @@ def search(request, name):
     stringToHash = ts + privatekey + publickey
     hash = hashlib.md5(stringToHash.encode()).hexdigest()
     new_list = []
+
     if (name == "characters"):
         if(page_number==None):
             url = baseUrl + "?nameStartsWith=" + element + "&ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
@@ -32,6 +33,26 @@ def search(request, name):
             temp['description'] = i['description']
             temp['thumbnail'] = i['thumbnail']['path']+'/portrait_xlarge.'+i['thumbnail']['extension']
             temp['name'] = i['name']
+            new_list.append(temp)
+        paginator = Paginator(new_list, 20)
+        page_obj = paginator.get_page(page_number)
+        page_obj.paginator.num_pages = int(1559/20) + 1
+        page_obj_temp = paginator.get_page(page_number)
+
+    elif (name == "events"):
+        if(page_number==None):
+            url = baseUrl + "?nameStartsWith=" + element + "&ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
+            r = requests.get(url).json()['data']['results']
+        else:
+            offset = (int(page_number)-1) * 20
+            url = baseUrl + "?nameStartsWith=" + element + "&limit=20&offset=" + str(offset) + "&ts=" + ts + "&apikey=" + publickey + "&hash=" + hash
+            r = requests.get(url).json()['data']['results']
+        for i in r:
+            temp = {}
+            temp['id'] = i['id']
+            temp['description'] = i['description']
+            temp['thumbnail'] = i['thumbnail']['path']+'/portrait_xlarge.'+i['thumbnail']['extension']
+            temp['name'] = i['title']
             new_list.append(temp)
         paginator = Paginator(new_list, 20)
         page_obj = paginator.get_page(page_number)
